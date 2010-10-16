@@ -12,8 +12,9 @@ import os
 
 
 def main():
-  pass
-
+  print 'Content-Type: text/plain'
+  print ''
+  print 'Hello, world!'
 
 if __name__ == '__main__':
   main()
