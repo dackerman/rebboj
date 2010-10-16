@@ -14,7 +14,7 @@ import os
 def main():
   print 'Content-Type: text/plain'
   print ''
-  print 'Hello, world!'
+  print 'Hello, David & Sweta!'
 
 if __name__ == '__main__':
   main()
