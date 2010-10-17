@@ -24,7 +24,7 @@ class JobberHomeController(webapp.RequestHandler):
 		'reviews' : reviews
 	}
 
-	path = os.path.join(os.path.dirname(__file__), 'index.html')
+	path = os.path.join(os.path.dirname(__file__), 'views/index.html')
 	self.response.out.write(template.render(path, template_values))
 
 class ReviewController(webapp.RequestHandler):

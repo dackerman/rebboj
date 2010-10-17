@@ -13,6 +13,9 @@ from ..models.review import Review
 class ReviewTest(unittest.TestCase):
   def setUp(self):
     pass
+
+  def tearDown(self):
+    pass
   
   def test_creation(self):
     model = Review(text='test')
