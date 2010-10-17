@@ -10,8 +10,8 @@ handlers:
 - url: /javascript
   static_dir: public/javascript
 
-- url: /companies/
-  script: controllers/company_controller.py
-
 - url: /
   script: controllers/index_controller.py
+
+- url: /companies.*
+  script: controllers/company_controller.py

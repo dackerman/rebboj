@@ -23,7 +23,7 @@ class CompanyController(webapp.RequestHandler):
                             '../views/company_profile.html')
         self.response.out.write(template.render(path, {}))
 
-application = webapp.WSGIApplication([('/', CompanyController)],
+application = webapp.WSGIApplication([('/companies', CompanyController)],
                                      debug=True)
 
 def main():
