@@ -1,7 +1,9 @@
 #header{
 	height:50px;
-	color:white;
+	color:#295E11;
 	background-color:#A4E685;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
 	font-size:150%;
 	padding:20px 20px 5px 20px;
 }
@@ -15,6 +17,7 @@ body{
 	font-size:160%;
 }
 #page{
+  border: 1px solid black;
 	width:900px;
 	margin:auto;
 	border-radius:20px;
