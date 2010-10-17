@@ -9,8 +9,7 @@ Copyright (c) 2010 __MyCompanyName__. All rights reserved.
 
 import unittest
 from google.appengine.api import users
-from models import Company
-from models import Review
+from models import *
 
 class ReviewTest(unittest.TestCase):
     def setUp(self):
@@ -31,6 +30,15 @@ class ReviewTest(unittest.TestCase):
         review.put()
         fetched_review = Review.all().filter('author = ', user).fetch(1)[0]
         self.assertEquals(fetched_review.author, user)
+        
+    def test_rating_review(self):
+        testRating = Rating()
+        testRating.salary = 5
+        testRating.put()
+        review = Review(rating=testRating)
+        review.put()
+        fetched_review = Review.all().filter('rating = ', testRating).fetch(1)[0]
+        self.assertEquals(testRating.key(), fetched_review.rating.key())
 
 
 class CompanyTest(unittest.TestCase):
@@ -50,6 +58,28 @@ class CompanyTest(unittest.TestCase):
         reviews = testCompany.GetReviews()
         self.assertEquals(2, len(reviews))
 
+
+class RatingTest(unittest.TestCase):
+    def test_creation(self):
+        rating = Rating()
+        rating.salary = 3
+        rating.growth = 2
+        rating.benefits = 5
+        rating.peers = 2
+        rating.environment = 1
+        rating.location = 2
+        rating.put()
+        fetched_rating = Rating.all().fetch(1)[0]
+        self.assertEquals(rating.key(), fetched_rating.key())
+        self.assertEquals(rating.peers, fetched_rating.peers)
+    
+    def test_initial_weighted_average(self):
+        rating = Rating()
+        self.assertEquals(3, rating.WeightedAverage())
+        
+    def test_weighted_average(self):
+        rating = Rating(salary=5)
+        self.assertEquals(20 / 6, rating.WeightedAverage())
 
 if __name__ == '__main__':
     unittest.main()

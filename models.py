@@ -9,6 +9,7 @@ Copyright (c) 2010 __MyCompanyName__. All rights reserved.
 
 from google.appengine.ext import db
 
+
 class Company(db.Model):
   def GetReviews(self):
     query = Review.all().filter('company = ', self)
@@ -17,8 +18,42 @@ class Company(db.Model):
       reviews.append(entry)
     return reviews
 
+"""salary
+benefits
+growth
+peers
+environment
+location    
+jobtype"""
+
+class Rating(db.Model):
+    salary = db.IntegerProperty()
+    benefits = db.IntegerProperty()
+    growth = db.IntegerProperty()
+    peers = db.IntegerProperty()
+    environment = db.IntegerProperty()
+    location = db.IntegerProperty()
+    
+    def WeightedAverage(self):
+        default = 3
+        num_ratings = 6
+        return (self.GetValueOrDefault(self.salary) + 
+                self.GetValueOrDefault(self.benefits) + 
+                self.GetValueOrDefault(self.growth) +
+                self.GetValueOrDefault(self.peers) +
+                self.GetValueOrDefault(self.environment) +
+                self.GetValueOrDefault(self.location)) / num_ratings
+
+    def GetValueOrDefault(self, value):
+        default = 3
+        return value if value else default
+
+
 class Review(db.Model):
-  text = db.StringProperty(multiline=True)
-  author = db.UserProperty()
-  date = db.DateTimeProperty(auto_now_add=True)
-  company = db.ReferenceProperty(Company)
+    author = db.UserProperty()
+    date = db.DateTimeProperty(auto_now_add=True)
+    company = db.ReferenceProperty(Company)
+    text = db.StringProperty(multiline=True)
+    rating = db.ReferenceProperty(Rating)
+
+
