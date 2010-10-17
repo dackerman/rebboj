@@ -40,9 +40,6 @@ application = webapp.WSGIApplication(
                                       ('/review', ReviewController)],
                                      debug=True)
 
-class Review(db.Model):
-    text = db.StringProperty(multiline=True)
-    date = db.DateTimeProperty(auto_now_add=True)
 
 def main():
     run_wsgi_app(application)
