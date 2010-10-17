@@ -1,0 +1,14 @@
+<html>
+  <body>
+    {% for review in reviews %}
+       An anonymous person wrote:
+      <blockquote>{{ review.text|escape }}</blockquote>
+    {% endfor %}
+
+    <form action="/review" method="post">
+      <div><textarea name="content" rows="3" cols="60"></textarea></div>
+      <div><input type="submit" value="Submit Review"></div>
+    </form>
+
+  </body>
+</html>
