@@ -4,8 +4,14 @@ runtime: python
 api_version: 1
 
 handlers:
-- url: /public/stylesheets
-  static_dir: stylesheets
+- url: /stylesheets
+  static_dir: public/stylesheets
 
-- url: /.*
-  script: controllers.py
+- url: /javascript
+  static_dir: public/javascript
+
+- url: /companies/
+  script: controllers/company_controller.py
+
+- url: /
+  script: controllers/index_controller.py

@@ -8,15 +8,16 @@ Copyright (c) 2010 __MyCompanyName__. All rights reserved.
 """
 
 import os
-from google.appengine.ext.webapp import template
-
 import cgi
 
+from google.appengine.ext import db
 from google.appengine.api import users
 from google.appengine.ext import webapp
+from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
-from google.appengine.ext import db
+
 from models.review import Review
+
 
 class JobberHomeController(webapp.RequestHandler):
     def get(self):
@@ -25,7 +26,7 @@ class JobberHomeController(webapp.RequestHandler):
 		'reviews' : reviews
 	}
 
-	path = os.path.join(os.path.dirname(__file__), 'views/index.html')
+	path = os.path.join(os.path.dirname(__file__), '../views/index.html')
 	self.response.out.write(template.render(path, template_values))
 
 class ReviewController(webapp.RequestHandler):
@@ -39,7 +40,7 @@ class ReviewController(webapp.RequestHandler):
 application = webapp.WSGIApplication(
                                      [('/', JobberHomeController),
                                       ('/review', ReviewController)],
-                                     debug=True)
+                                      debug=True)
 
 
 def main():
