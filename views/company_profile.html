@@ -9,8 +9,12 @@
 	<div id="header">Jobber!</div>
 	<div id="content">
 		<div id="company">
-			<div class="title">Sweta Inc.</div>
-			<div id="stars">* * * * *</div>
+			<div class="title">{{ name }}</div>
+			<div id="stars">
+				{% for star in stars %}
+			    	<img src="http://www.softahead.com/img/mall/star_icon1.gif" />
+			    {% endfor %}
+			</div>
 			<div id="reviews"><a href="">43 reviews</a></div>
 		</div>
 		<div id="viewby">

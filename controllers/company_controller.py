@@ -18,12 +18,16 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 
 
 class CompanyController(webapp.RequestHandler):
-    def get(self):
+    def get(self, company_name):
         path = os.path.join(os.path.dirname(__file__),
                             '../views/company_profile.html')
-        self.response.out.write(template.render(path, {}))
+       # company = Company.all().filter("name = ", company_name).fetch(1)[0]
+        template_data = {
+          'name': company_name,
+        }
+        self.response.out.write(template.render(path, template_data))
 
-application = webapp.WSGIApplication([('/companies', CompanyController)],
+application = webapp.WSGIApplication([('/companies/(.*)', CompanyController)],
                                      debug=True)
 
 def main():
