@@ -10,6 +10,9 @@ handlers:
 - url: /javascript
   static_dir: public/javascript
 
+- url: /images
+  static_dir: public/images
+
 - url: /(review)?
   script: controllers/index_controller.py
 

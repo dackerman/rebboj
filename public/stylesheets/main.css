@@ -1,10 +1,20 @@
 #header{
-    height:50px;
     color:#333;
-    background-color:#A4E685;
-    border:1px solid #333;
+    background-color:transparent;
+    background-image:url('/images/jobber_header.png');
+    background-repeat:no-repeat;
+    background-position:bottom left;
+    height:80px;
     font-size:150%;
-    padding:20px 20px 5px 20px;
+}
+#title_text{
+    padding-top:40px;
+    margin-left:200px;
+    color:white;
+}
+#jobber_logo{
+    width:150px;
+    height:75px;
 }
 body{
     font-family:'Droid Serif';
@@ -16,7 +26,7 @@ body{
 }
 #page{
     margin-top:10px;
-    width:900px;
+    width:889px;
     margin:auto;
 }
 #content{
