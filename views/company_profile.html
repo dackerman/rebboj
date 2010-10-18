@@ -1,42 +1,35 @@
-<!DOCTYPE html>
-<head>
-	<meta charset="utf-8">
-	<title>Company Profile</title>
-	<link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
-</head>
-<body>
-<div id="page">
-	<div id="header">Jobber!</div>
-	<div id="content">
-		<div id="company">
-			<div class="title">{{ name }}</div>
-			<div id="stars">
-                        {{ stars  }}
-			</div>
-			<div id="reviews"><a href="">43 reviews</a></div>
-		</div>
-		<div id="viewby">
-			View by:<br />
-			<a href="">Interview Process</a>
-			<a href="">Compensation</a>
-			<a href="">Benefits</a>
-		</div>
-		<div id="graphs">
-			<div id="trend_graph">
-				<img src="http://leisureguy.files.wordpress.com/2006/07/drugs_graph_416.gif?w=340" />
-			</div>
-			<div id="distribution_graph">
-				<img src="http://leisureguy.files.wordpress.com/2006/07/drugs_graph_416.gif?w=340" />
-			</div>
-		</div>
-                <div id="reviews">
-                  {% for r  in reviews %}
-                  An anonymous person wrote:
-                  {{ r.1 }} <br />
-                  <blockquote>{{ r.0|escape }}</blockquote>
-                  {% endfor %}
-                </div>
-	</div>
-</div>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block pagetitle %}Company Profile{% endblock %}
+{% block title %}Company Profile{% endblock %}
+
+{% block content %}
+ <div id="company">
+ 	<div class="title">{{ name }}</div>
+ 	<div id="stars">
+         {{ stars  }}
+ 	</div>
+ 	<div id="reviews"><a href="">43 reviews</a></div>
+ </div>
+ <div id="viewby">
+ 	View by:<br />
+ 	<a href="">Interview Process</a>
+ 	<a href="">Compensation</a>
+ 	<a href="">Benefits</a>
+ </div>
+ <div id="graphs">
+ 	<div id="trend_graph">
+ 		<img src="http://leisureguy.files.wordpress.com/2006/07/drugs_graph_416.gif?w=340" />
+ 	</div>
+ 	<div id="distribution_graph">
+ 		<img src="http://leisureguy.files.wordpress.com/2006/07/drugs_graph_416.gif?w=340" />
+ 	</div>
+ </div>
+ <div id="reviews">
+   {% for r  in reviews %}
+   An anonymous person wrote:
+   {{ r.1 }} <br />
+   <blockquote>{{ r.0|escape }}</blockquote>
+   {% endfor %}
+ </div>
+{% endblock %}

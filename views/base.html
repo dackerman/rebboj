@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title>{% block pagetitle %}{% endblock %}</title>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Serif&subset=latin' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Sans&subset=latin' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+</head>
+<body>
+<div id="page">
+	<div id="header">Jobber! - {% block title %}{% endblock %}</div>
+	<div id="content">
+          {% block content %}{% endblock %}
+	</div>
+</div>
+</body>
+</html>
