@@ -11,6 +11,7 @@ from google.appengine.ext import db
 
 
 class Company(db.Model):
+  name = db.StringProperty()
   def GetReviews(self):
     query = Review.all().filter('company = ', self)
     reviews = []
@@ -18,13 +19,14 @@ class Company(db.Model):
       reviews.append(entry)
     return reviews
 
-"""salary
-benefits
-growth
-peers
-environment
-location    
-jobtype"""
+  def GetRating(self):
+    reviews = self.GetReviews()
+    total = 0.0
+    for review in reviews:
+      if review.rating:
+        total += review.rating.WeightedAverage()
+    return total / len(reviews)
+
 
 class Rating(db.Model):
     salary = db.IntegerProperty()
@@ -33,12 +35,12 @@ class Rating(db.Model):
     peers = db.IntegerProperty()
     environment = db.IntegerProperty()
     location = db.IntegerProperty()
-    
+
     def WeightedAverage(self):
         default = 3
         num_ratings = 6
-        return (self.GetValueOrDefault(self.salary) + 
-                self.GetValueOrDefault(self.benefits) + 
+        return (self.GetValueOrDefault(self.salary) +
+                self.GetValueOrDefault(self.benefits) +
                 self.GetValueOrDefault(self.growth) +
                 self.GetValueOrDefault(self.peers) +
                 self.GetValueOrDefault(self.environment) +

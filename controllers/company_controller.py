@@ -15,16 +15,19 @@ from google.appengine.api import users
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
+from models import Company
 
 
 class CompanyController(webapp.RequestHandler):
     def get(self, company_name):
         path = os.path.join(os.path.dirname(__file__),
                             '../views/company_profile.html')
-       # company = Company.all().filter("name = ", company_name).fetch(1)[0]
+        company = Company.all().filter("name = ", company_name).fetch(1)[0]
         template_data = {
-          'name': company_name,
-        }
+            'name': company_name,
+            'stars': company.GetRating(),
+            'reviews': [(r.text, r.rating.WeightedAverage()) for r in company.GetReviews() if r.rating]
+            }
         self.response.out.write(template.render(path, template_data))
 
 application = webapp.WSGIApplication([('/companies/(.*)', CompanyController)],

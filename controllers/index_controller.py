@@ -17,7 +17,8 @@ from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
 
 from models import Review
-
+from models import Company
+from models import Rating
 
 class JobberHomeController(webapp.RequestHandler):
     def get(self):
@@ -31,9 +32,25 @@ class JobberHomeController(webapp.RequestHandler):
 
 class ReviewController(webapp.RequestHandler):
     def post(self):
+        company = Company.all().filter('name = ', 'Google').fetch(1)
+        if not len(company):
+            company = Company(name='Google')
+            company.put()
+        else:
+            company = company[0]
 
 	review = Review()
+        review.company = company
 	review.text = self.request.get('content')
+        rating = Rating()
+        rating.benefits = int(self.request.get('benefits'))
+        rating.salary = int(self.request.get('salary'))
+        rating.environment = int(self.request.get('environment'))
+        rating.peers = int(self.request.get('peers'))
+        rating.location = int(self.request.get('location'))
+        rating.growth = int(self.request.get('growth'))
+        rating.put()
+        review.rating = rating
 	review.put()
 	self.redirect('/')
 

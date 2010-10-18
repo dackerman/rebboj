@@ -11,9 +11,7 @@
 		<div id="company">
 			<div class="title">{{ name }}</div>
 			<div id="stars">
-				{% for star in stars %}
-			    	<img src="http://www.softahead.com/img/mall/star_icon1.gif" />
-			    {% endfor %}
+                        {{ stars  }}
 			</div>
 			<div id="reviews"><a href="">43 reviews</a></div>
 		</div>
@@ -31,6 +29,13 @@
 				<img src="http://leisureguy.files.wordpress.com/2006/07/drugs_graph_416.gif?w=340" />
 			</div>
 		</div>
+                <div id="reviews">
+                  {% for r  in reviews %}
+                  An anonymous person wrote:
+                  {{ r.1 }} <br />
+                  <blockquote>{{ r.0|escape }}</blockquote>
+                  {% endfor %}
+                </div>
 	</div>
 </div>
 </body>
