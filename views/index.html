@@ -3,14 +3,28 @@
 {% block pagetitle %}Write a Review{% endblock %}
 {% block title %}Write a Review{% endblock %}
 
+{% block javascript %}
+<script type="text/javascript" src="/javascript/stars.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  Stars.createStars("#benefits");
+  Stars.createStars("#salary");
+  Stars.createStars("#environment");
+  Stars.createStars("#peers");
+  Stars.createStars("#location");
+  Stars.createStars("#growth");
+});
+</script>
+{% endblock %}
+
 {% block content %}
  <form action="/review" method="post">
-   <div><label name="benefits">Benefits</label><input type="text" name="benefits" value="3" />
-   <div><label name="salary">Salary</label><input type="text" name="salary" value="3" />
-   <div><label name="environment">Environment</label><input type="text" name="environment" value="3" />
-   <div><label name="peers">Peers</label><input type="text" name="peers" value="3" />
-   <div><label name="location">Location</label><input type="text" name="location" value="3" />
-   <div><label name="growth">Growth</label><input type="text" name="growth" value="3" />
+   <div><label name="benefits">Benefits</label><input id="benefits" type="hidden" name="benefits" /></div>
+   <div><label name="salary">Salary</label><input id="salary" type="hidden" name="salary" /></div>
+   <div><label name="environment">Environment</label><input id="environment" type="hidden" name="environment" /></div>
+   <div><label name="peers">Peers</label><input id="peers" type="hidden" name="peers" /></div>
+   <div><label name="location">Location</label><input id="location" type="hidden" name="location" /></div>
+   <div><label name="growth">Growth</label><input id="growth" type="hidden" name="growth" /></div>
    <div><textarea name="content" rows="3" cols="60"></textarea></div>
    <div><input type="submit" value="Submit Review"></div>
  </form>
