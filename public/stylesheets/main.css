@@ -1,9 +1,15 @@
-.star{
+.star {
     width:15px;
     height:15px;
     background-image:url('http://www.custom52.com/Images/star_icon.gif');
 }
-#header{
+.rightaligned {
+    text-align:right;
+}
+label {
+    margin-right:10px;
+}
+#header {
     color:#333;
     background-color:transparent;
     background-image:url('/images/jobber_header.png');
@@ -12,45 +18,50 @@
     height:80px;
     font-size:150%;
 }
-#title_text{
+#company_name {
+    color:#555;
+    font-size:130%;
+    margin-bottom:20px;
+}
+#title_text {
     padding-top:40px;
     margin-left:200px;
     color:white;
 }
-#jobber_logo{
+#jobber_logo {
     width:150px;
     height:75px;
 }
-body{
+body {
     font-family:'Droid Serif';
     background-color:#eee;
     margin:0px;
 }
-#company .title{
+#company .title {
     font-size:160%;
 }
-#page{
+#page {
     margin-top:10px;
     width:889px;
     margin:auto;
 }
-#content{
+#content {
     font-family:'Droid Sans';
     min-height:1000px;
     padding:20px 100px;
     margin:auto;
     background-color:white;
 }
-#viewby a{
+#viewby a {
     display:block;
 }
-#company, #trend_graph{
+#company, #trend_graph {
     float:left;
 }
-#viewby, #distribution_graph{
+#viewby, #distribution_graph {
     float:right;
 }
-.star{
+.star {
     background-color:transparent;
     background-image:url('http://www.softahead.com/img/mall/star_icon1.gif');
     background-repeat:no-repeat;
@@ -60,7 +71,7 @@ body{
     padding:0px;
     display:inline;
 }
-#graphs{
+#graphs {
     padding-top:50px;
     clear:both;
 }
