@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block javascript %}
+  <link rel="stylesheet" href="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.css" type="text/css" />
+  <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/lib/jquery.bgiframe.min.js"></script>
+  <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/lib/jquery.dimensions.js"></script>
+  <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    var data = [
+      {% for c in companies %}
+      "{{ c.name }}",
+      {% endfor %}
+    ];
+  $("#search_company").autocomplete(data);
+  });
+  </script>
+{% endblock %}
+
+{% block pagetitle %}Companies {% endblock %}
+{% block title %}Companies{% endblock %}
+{% block content %}
+ <div id="companies">
+   <input id="search_company" />
+   <table>
+   {% for c in companies%}
+   <tr>
+     <td>
+       <a href="{{ c.name }}">{{ c.name }}</a><br />
+     </td>
+     <td>
+       {{ c.GetRating }}
+     </td>
+   </tr>
+   {% endfor %}
+   </table>
+ </div>
+{% endblock %}

@@ -18,7 +18,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from models import Company
 
 
-class CompanyController(webapp.RequestHandler):
+class CompanyProfileController(webapp.RequestHandler):
     def get(self, company_name):
         path = os.path.join(os.path.dirname(__file__),
                             '../views/company_profile.html')
@@ -31,8 +31,22 @@ class CompanyController(webapp.RequestHandler):
             }
         self.response.out.write(template.render(path, template_data))
 
-application = webapp.WSGIApplication([('/companies/(.*)', CompanyController)],
+
+class CompaniesController(webapp.RequestHandler):
+    def get(self):
+        path = os.path.join(os.path.dirname(__file__),
+                            '../views/company_list.html')
+        companies = Company.all().order('name')
+        template_data = {
+            'companies': companies
+            }
+        self.response.out.write(template.render(path, template_data))
+
+application = webapp.WSGIApplication([
+        ('/companies/', CompaniesController),
+        ('/companies/(.*)', CompanyProfileController)],
                                      debug=True)
+
 
 def main():
     run_wsgi_app(application)
