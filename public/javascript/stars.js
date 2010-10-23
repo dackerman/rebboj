@@ -17,6 +17,7 @@ Stars.createStars = function(name){
     star.src = offImage;
     $(starid).data('ele', name);
     $(starid).data('position', i + "");
+    $(starid).attr('class', 'star');
     $(starid).click(
       function(){
         $(this).attr('src', onImage);

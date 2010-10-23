@@ -62,14 +62,7 @@ body {
     float:right;
 }
 .star {
-    background-color:transparent;
-    background-image:url('http://www.softahead.com/img/mall/star_icon1.gif');
-    background-repeat:no-repeat;
-    background-position:top left;
-    width:19px;
-    height:18px;
-    padding:0px;
-    display:inline;
+    cursor:pointer;
 }
 #graphs {
     padding-top:50px;
