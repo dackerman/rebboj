@@ -1,81 +1,14 @@
 {% extends "base.html" %}
 
-{% block pagetitle %}Write a Review{% endblock %}
-{% block title %}Write a Review{% endblock %}
+{% block pagetitle %}Jobber Home{% endblock %}
+{% block title %}Welcome to Jobber!{% endblock %}
 
 {% block javascript %}
-<script type="text/javascript" src="/javascript/stars.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-  Stars.createStars("#benefits");
-  Stars.createStars("#salary");
-  Stars.createStars("#environment");
-  Stars.createStars("#peers");
-  Stars.createStars("#location");
-  Stars.createStars("#growth");
-});
-</script>
 {% endblock %}
 
 {% block content %}
  <div id="company_name">Rate Google</div>
- <form action="/review" method="post">
-   <table>
-     <tr>
-       <td class="rightaligned">
-         <label name="benefits">Benefits</label>
-       </td>
-       <td>
-         <input id="benefits" type="hidden" name="benefits" />
-       </td>
-     </tr>
-     <tr>
-       <td class="rightaligned">
-         <label name="salary">Salary</label>
-       </td>
-       <td>
-         <input id="salary" type="hidden" name="salary" />
-       </td>
-     </tr>
-     <tr>
-       <td class="rightaligned">
-         <label name="environment">Environment</label>
-       </td>
-       <td>
-         <input id="environment" type="hidden" name="environment" />
-       </td>
-     </tr>
-     <tr>
-       <td class="rightaligned">
-         <label name="peers">Peers</label>
-       </td>
-       <td>
-         <input id="peers" type="hidden" name="peers" />
-       </td>
-     </tr>
-     <tr>
-       <td class="rightaligned">
-         <label name="location">Location</label>
-       </td>
-       <td>
-         <input id="location" type="hidden" name="location" />
-       </td>
-     </tr>
-     <tr>
-       <td class="rightaligned">
-         <label name="growth">Growth</label>
-       </td>
-       <td>
-         <input id="growth" type="hidden" name="growth" />
-       </td>
-     </tr>
-   </table>
-   <div style="margin-top:20px">
-     <label for="content">What would you like to say?</label>
-     <textarea name="content" rows="3" cols="60"></textarea></div>
-   <div><input type="submit" value="Submit Review"></div>
- </form>
-<div id="reviews" style="margin-top:20px;padding:5px;background-color:#eeffee;border-top:1px dashed #999">
+ <div id="reviews" style="margin-top:20px;padding:5px;background-color:#eeffee;border-top:1px dashed #999">
  {% for review in reviews %}
     An anonymous person wrote:
    <blockquote><i>"{{ review.text|escape }}"</i></blockquote>
