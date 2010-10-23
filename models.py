@@ -39,7 +39,6 @@ class Rating(db.Model):
     location = db.IntegerProperty()
 
     def WeightedAverage(self):
-        default = 3
         num_ratings = 6
         return (self.GetValueOrDefault(self.salary) +
                 self.GetValueOrDefault(self.benefits) +
@@ -49,8 +48,12 @@ class Rating(db.Model):
                 self.GetValueOrDefault(self.location)) / num_ratings
 
     def GetValueOrDefault(self, value):
-        default = 3
+        default = Rating.GetDefaultRating()
         return value if value else default
+
+    @staticmethod
+    def GetDefaultRating():
+      return 3
 
 
 class Review(db.Model):

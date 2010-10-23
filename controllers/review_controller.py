@@ -44,17 +44,22 @@ class ReviewController(webapp.RequestHandler):
         review.company = company
 	review.text = self.request.get('content')
         rating = Rating()
-        rating.benefits = int(self.request.get('benefits'))
-        rating.salary = int(self.request.get('salary'))
-        rating.environment = int(self.request.get('environment'))
-        rating.peers = int(self.request.get('peers'))
-        rating.location = int(self.request.get('location'))
-        rating.growth = int(self.request.get('growth'))
+        rating.benefits = self.GetIntOrDefault('benefits')
+        rating.salary = self.GetIntOrDefault('salary')
+        rating.environment = self.GetIntOrDefault('environment')
+        rating.peers = self.GetIntOrDefault('peers')
+        rating.location = self.GetIntOrDefault('location')
+        rating.growth = self.GetIntOrDefault('growth')
         rating.put()
         review.rating = rating
 	review.put()
 	self.redirect('/companies/' + company_name)
 
+    def GetIntOrDefault(self, param):
+        value = self.request.get(param)
+        if value:
+            return int(value)
+        return Rating.GetDefaultRating()
 
 application = webapp.WSGIApplication( [('/companies/(.*)/review',
                                         ReviewController)], debug=True)

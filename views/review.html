@@ -13,6 +13,9 @@ $(document).ready(function(){
   Stars.createStars("#peers");
   Stars.createStars("#location");
   Stars.createStars("#growth");
+
+  $("input[type=hidden]").attr("value", 3);
+  $("[name=star_3]").click();
 });
 </script>
 {% endblock %}
