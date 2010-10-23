@@ -26,11 +26,12 @@ class Company(db.Model):
     total = 0.0
     for review in reviews:
       if review.rating:
-        total += review.rating.WeightedAverage()
+        total += review.rating.overall or 0
     return total / len(reviews)
 
 
 class Rating(db.Model):
+    overall = db.IntegerProperty()
     salary = db.IntegerProperty()
     benefits = db.IntegerProperty()
     growth = db.IntegerProperty()

@@ -44,6 +44,7 @@ class ReviewController(webapp.RequestHandler):
         review.company = company
 	review.text = self.request.get('content')
         rating = Rating()
+        rating.overall = self.GetIntOrDefault('overall')
         rating.benefits = self.GetIntOrDefault('benefits')
         rating.salary = self.GetIntOrDefault('salary')
         rating.environment = self.GetIntOrDefault('environment')

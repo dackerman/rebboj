@@ -76,20 +76,21 @@ class CompanyTest(unittest.TestCase):
     def test_overall_rating(self):
         testCompany = Company()
         testCompany.put()
-        rating1 = Rating(salary=1,location=1,environment=1)
-        rating2 = Rating(location=3)
+        rating1 = Rating(overall=1, salary=1,location=1,environment=1)
+        rating2 = Rating(overall=2, location=3)
         rating1.put()
         rating2.put()
         review1 = Review(company=testCompany, rating=rating1)
         review2 = Review(company=testCompany, rating=rating2)
         review1.put()
         review2.put()
-        self.assertEquals(2.5, testCompany.GetRating())
+        self.assertEquals(1.5, testCompany.GetRating())
 
 
 class RatingTest(unittest.TestCase):
     def test_creation(self):
         rating = Rating()
+        rating.overall = 4
         rating.salary = 3
         rating.growth = 2
         rating.benefits = 5
@@ -101,6 +102,13 @@ class RatingTest(unittest.TestCase):
             'benefits = ', rating.benefits).fetch(1)[0]
         self.assertEquals(rating.key(), fetched_rating.key())
         self.assertEquals(rating.peers, fetched_rating.peers)
+
+    def test_overall_rating(self):
+        rating = Rating(overall=5)
+        rating.put()
+        fetched_rating = Rating.all().filter('overall = ', rating.overall)
+        fetched_rating = fetched_rating.fetch(1)[0]
+        self.assertEquals(rating.key(), fetched_rating.key())
 
     def test_initial_weighted_average(self):
         rating = Rating()
