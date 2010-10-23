@@ -75,10 +75,4 @@ $(document).ready(function(){
      <textarea name="content" rows="3" cols="60"></textarea></div>
    <div><input type="submit" value="Submit Review"></div>
  </form>
-<div id="reviews" style="margin-top:20px;padding:5px;background-color:#eeffee;border-top:1px dashed #999">
- {% for review in reviews %}
-    An anonymous person wrote:
-   <blockquote><i>"{{ review.text|escape }}"</i></blockquote>
- {% endfor %}
-</div>
 {% endblock %}

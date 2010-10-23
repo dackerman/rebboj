@@ -12,8 +12,10 @@ from google.appengine.ext import db
 
 class Company(db.Model):
   name = db.StringProperty()
-  def GetReviews(self):
+  def GetReviews(self, order=None):
     query = Review.all().filter('company = ', self)
+    if order:
+      query = query.order(order)
     reviews = []
     for entry in query:
       reviews.append(entry)

@@ -26,7 +26,8 @@ class CompanyController(webapp.RequestHandler):
         template_data = {
             'name': company_name,
             'stars': company.GetRating(),
-            'reviews': [(r.text, r.rating.WeightedAverage()) for r in company.GetReviews() if r.rating]
+            'reviews': [(r.text, r.rating.WeightedAverage())
+                        for r in company.GetReviews(order='-date') if r.rating]
             }
         self.response.out.write(template.render(path, template_data))
 

@@ -8,6 +8,7 @@ Copyright (c) 2010 __MyCompanyName__. All rights reserved.
 """
 
 import unittest
+import datetime
 from google.appengine.api import users
 from models import *
 
@@ -58,6 +59,19 @@ class CompanyTest(unittest.TestCase):
         review2.put()
         reviews = testCompany.GetReviews()
         self.assertEquals(2, len(reviews))
+
+    def test_get_reviews_by_date(self):
+        testCompany = Company()
+        testCompany.put()
+        review1 = Review(company=testCompany, text='review1',
+                         date=datetime.datetime(2010, 1, 1, 1))
+        review2 = Review(company=testCompany, text='review2',
+                         date=datetime.datetime(2010, 2, 1, 1))
+        review1.put()
+        review2.put()
+        reviews = testCompany.GetReviews(order='-date')
+        self.assertEquals(reviews[0].text, review2.text)
+        self.assertEquals(reviews[1].text, review1.text)
 
     def test_overall_rating(self):
         testCompany = Company()

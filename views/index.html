@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% block pagetitle %}Jobber Home{% endblock %}
-{% block title %}Welcome to Jobber!{% endblock %}
+{% block title %}{% endblock %}
 
 {% block javascript %}
 {% endblock %}
 
 {% block content %}
- <div id="company_name">Rate Google</div>
+ <div id="company_name">Welcome to Jobber! Review for Rewards!</div>
+ <div id="recent_reviews">Last 5 Reviews:</div>
  <div id="reviews" style="margin-top:20px;padding:5px;background-color:#eeffee;border-top:1px dashed #999">
  {% for review in reviews %}
     An anonymous person wrote:

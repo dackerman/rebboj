@@ -20,7 +20,7 @@ from models import Review
 
 class JobberHomeController(webapp.RequestHandler):
     def get(self):
-	reviews = db.GqlQuery("SELECT * FROM Review ORDER BY date DESC")
+	reviews = db.GqlQuery("SELECT * FROM Review ORDER BY date DESC LIMIT 5")
 	template_values = {
 		'reviews' : reviews
 	}
