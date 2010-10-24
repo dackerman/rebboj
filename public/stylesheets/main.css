@@ -1,8 +1,3 @@
-.star {
-    width:15px;
-    height:15px;
-    background-image:url('http://www.custom52.com/Images/star_icon.gif');
-}
 .rightaligned {
     text-align:right;
 }
@@ -18,11 +13,6 @@ label {
     height:80px;
     font-size:150%;
 }
-#company_name {
-    color:#555;
-    font-size:130%;
-    margin-bottom:20px;
-}
 #title_text {
     padding-top:40px;
     margin-left:200px;
@@ -37,9 +27,6 @@ body {
     background-color:#eee;
     margin:0px;
 }
-#company .title {
-    font-size:160%;
-}
 #page {
     margin-top:10px;
     width:889px;
@@ -52,19 +39,11 @@ body {
     margin:auto;
     background-color:white;
 }
-#viewby a {
-    display:block;
-}
-#company, #trend_graph {
-    float:left;
-}
-#viewby, #distribution_graph {
-    float:right;
-}
 .star {
     cursor:pointer;
 }
-#graphs {
-    padding-top:50px;
-    clear:both;
+#company_name {
+    color: #555;
+    font-size:130%;
+    margin-bottom:20px;
 }

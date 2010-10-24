@@ -1,0 +1,16 @@
+#company .title {
+    font-size:160%;
+}
+#company, #trend_graph {
+    float: left;
+}
+#graphs {
+    padding-top:50px;
+    clear:both;
+}
+#viewby, #distribution_graph {
+    float: right;
+}
+#viewby a {
+    display:block;
+}
