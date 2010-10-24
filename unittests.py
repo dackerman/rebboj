@@ -86,6 +86,16 @@ class CompanyTest(unittest.TestCase):
         review2.put()
         self.assertEquals(1.5, testCompany.GetRating())
 
+    def test_name_to_url(self):
+        self.assertEquals('onetwothree', Company.UrlName('OneTwoThree'))
+        self.assertEquals('one-two-three', Company.UrlName('One Two Three'))
+        self.assertEquals('google-inc', Company.UrlName('Google Inc.'))
+        self.assertEquals('yahoo', Company.UrlName('Yahoo!'))
+
+    def test_url_name_is_set(self):
+        testCompany = Company(name = 'Yahoo!')
+        testCompany.put()
+        self.assertEquals('yahoo', testCompany.urlname)
 
 class RatingTest(unittest.TestCase):
     def test_creation(self):

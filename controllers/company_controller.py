@@ -25,7 +25,13 @@ def GetTemplate(view_name):
 class CompanyProfileController(webapp.RequestHandler):
     def get(self, company_name):
         path = GetTemplate('company_profile')
-        company = Company.all().filter("name = ", company_name).fetch(1)[0]
+        url_name = Company.UrlName(company_name)
+        company = Company.all().filter("urlname = ", url_name).fetch(1)
+        if company:
+            company = company[0]
+        else:
+            self.CompanyNotFound(company_name)
+            return
         template_data = {
             'name': company_name,
             'stars': company.GetRating(),
@@ -33,6 +39,10 @@ class CompanyProfileController(webapp.RequestHandler):
                         for r in company.GetReviews(order='-date') if r.rating]
             }
         self.response.out.write(template.render(path, template_data))
+
+    def CompanyNotFound(self, company_name):
+        path = GetTemplate('company_not_found')
+        self.response.out.write(template.render(path, {'company': company_name}))
 
 
 class CompaniesController(webapp.RequestHandler):
