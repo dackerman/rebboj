@@ -18,10 +18,13 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from models import Company
 
 
+def GetTemplate(view_name):
+    return os.path.join(os.path.dirname(__file__),'../views/'+view_name+'.html')
+
+
 class CompanyProfileController(webapp.RequestHandler):
     def get(self, company_name):
-        path = os.path.join(os.path.dirname(__file__),
-                            '../views/company_profile.html')
+        path = GetTemplate('company_profile')
         company = Company.all().filter("name = ", company_name).fetch(1)[0]
         template_data = {
             'name': company_name,
@@ -34,8 +37,7 @@ class CompanyProfileController(webapp.RequestHandler):
 
 class CompaniesController(webapp.RequestHandler):
     def get(self):
-        path = os.path.join(os.path.dirname(__file__),
-                            '../views/company_list.html')
+        path = GetTemplate('company_list')
         companies = Company.all().order('name')
         template_data = {
             'companies': companies
