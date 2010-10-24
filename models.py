@@ -24,10 +24,12 @@ class Company(db.Model):
   def GetRating(self):
     reviews = self.GetReviews()
     total = 0.0
+    count = 0
     for review in reviews:
       if review.rating:
         total += review.rating.overall or 0
-    return total / len(reviews)
+        count += 1
+    return total / count
 
 
 class Rating(db.Model):
