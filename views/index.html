@@ -2,27 +2,51 @@
 
 {% block pagetitle %}Jobber Home{% endblock %}
 {% block title %}{% endblock %}
+{% block pagestyle %}
+  <link rel="stylesheet" type="text/css" href="/stylesheets/home.css" />
+{% endblock %}
 
 {% block javascript %}
 {% endblock %}
 
 {% block content %}
   <div id="about_jobber">
-    Welcome to Jobber! Review for Rewards! (more "about" stuff to come soon)
+    <span id="welcome">Welcome to Jobber!</span> This is the place for:
+    <ul>
+      <li>launching your career OR</li>
+      <li>recruiting for your company OR</li>
+      <li>learning more about your students' favorite workplaces</li>
+    </ul>
+    Click on one of the links below to get started right away!
   </div>
 
-  <div id="students">
-    <div class="marketing_heading">Students</div>
-    <div class="marketing_description">Find the top companies in your area!</div>
+  <a href="/companies/">
+    <div id="students" class="marketing_container">
+      <div class="marketing_text">
+        <div class="marketing_heading">Students</div>
+        <div class="marketing_description">Find the top companies in your area!</div>
+      </div>
+      <div class="marketing_gobutton">GO!</div>
+  </div></a>
+
+  <a href="companies.html">
+  <div id="companies" class="marketing_container">
+    <div class="marketing_text">
+      <div class="marketing_heading">Companies</div>
+      <div class="marketing_description">Nurture your online presence!</div>
+    </div>
     <div class="marketing_gobutton">GO!</div>
-  </div>
+  </div></a>
 
-  <div id="companies">
-    Companies: Nurture your online presence! GO
-  </div>
-  <div id="universities">
-    Universities: See where your students enjoy working! GO
-  </div>
+
+  <a href="/companies/">
+  <div id="universities" class="marketing_container">
+    <div class="marketing_text">
+      <div class="marketing_heading">Universities</div>
+      <div class="marketing_description">See where your students enjoy working!</div>
+    </div>
+    <div class="marketing_gobutton">GO!</div>
+  </div></a>
 
  <div id="recent_reviews">Last 5 Reviews:</div>
  <div id="reviews" style="margin-top:20px;padding:5px;background-color:#eeffee;border-top:1px dashed #999">

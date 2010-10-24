@@ -1,0 +1,64 @@
+#about_jobber {
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+ul {
+    margin: 7px;
+    list-style-type: circle;
+}
+
+.marketing_container:visited {
+    color: #fff;
+}
+
+.marketing_container:hover {
+    background-color: #337500;
+}
+
+.marketing_container {
+    background-color: #285D00;
+    border: 1px solid black;
+    float: left;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.marketing_text {
+    float: left;
+    width: 500px;
+    border-right: 1px dashed black;
+}
+
+.marketing_heading {
+   font-size: 200%;
+   border-top: 1px;
+}
+
+.marketing_description {
+    font-size: 150%;
+    clear: both;
+}
+
+.marketing_gobutton {
+    float: right;
+    font-size: 150%;
+    width: 100px;
+    text-align: center;
+}
+
+#recent_reviews {
+    color: #333;
+    font-size: 150%;
+}
+
+#welcome {
+    font-size: 120%;
+    font-weight: bold;
+}
