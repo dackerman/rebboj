@@ -54,7 +54,7 @@ class ReviewController(webapp.RequestHandler):
         rating.put()
         review.rating = rating
 	review.put()
-	self.redirect('/companies/' + company_name)
+	self.redirect('/companies/' + company.urlname)
 
     def GetIntOrDefault(self, param):
         value = self.request.get(param)

@@ -7,11 +7,18 @@ Created by David Ackerman & Sweta Vajjhala on 2010-10-16.
 Copyright (c) 2010 __MyCompanyName__. All rights reserved.
 """
 
+import re
 from google.appengine.ext import db
 
 
 class Company(db.Model):
   name = db.StringProperty()
+  urlname = db.StringProperty()
+
+  @staticmethod
+  def UrlName(name):
+    return name.lower().replace(' ','-').translate(None, '.,?!')
+
   def GetReviews(self, order=None):
     query = Review.all().filter('company = ', self)
     if order:
@@ -30,6 +37,14 @@ class Company(db.Model):
         total += review.rating.overall or 0
         count += 1
     return total / count
+
+  def SetUrlName(self):
+    if self.name:
+      self.urlname = Company.UrlName(self.name)
+
+  def put(self):
+    self.SetUrlName()
+    return super(Company, self).put()
 
 
 class Rating(db.Model):
