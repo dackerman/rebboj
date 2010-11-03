@@ -11,7 +11,9 @@
 </head>
 <body>
 <div id="page">
-	<div id="header"><div id="title_text">{% block title %}{% endblock %}</div></div>
+	<a id="home_link" href="/">
+          <div id="header"><div id="title_text">{% block title %}{% endblock %}</div></div>
+        </a>
 	<div id="content">
           {% block content %}{% endblock %}
 	</div>

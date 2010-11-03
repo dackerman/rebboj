@@ -22,6 +22,9 @@ label {
     margin-left:200px;
     color:white;
 }
+#home_link {
+    text-decoration: none;
+}
 #jobber_logo {
     width:150px;
     height:75px;

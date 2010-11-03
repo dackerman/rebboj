@@ -55,7 +55,7 @@ class CompaniesController(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_data))
 
 application = webapp.WSGIApplication([
-        ('/companies/', CompaniesController),
+        ('/companies/?', CompaniesController),
         ('/companies/(.*)', CompanyProfileController)],
                                      debug=True)
 
