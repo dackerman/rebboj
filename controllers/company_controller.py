@@ -44,6 +44,11 @@ class CompanyProfileController(webapp.RequestHandler):
         path = GetTemplate('company_not_found')
         self.response.out.write(template.render(path, {'company': company_name}))
 
+class CompanyAddController(webapp.RequestHandler):
+    def get(self):
+        path = GetTemplate('add_company')
+        self.response.out.write(template.render(path, {}))
+
 
 class CompaniesController(webapp.RequestHandler):
     def get(self):
@@ -56,7 +61,8 @@ class CompaniesController(webapp.RequestHandler):
 
 application = webapp.WSGIApplication([
         ('/companies/?', CompaniesController),
-        ('/companies/(.*)', CompanyProfileController)],
+        ('/companies/add/?', CompanyAddController),
+        ('/companies/view/(.*)', CompanyProfileController)],
                                      debug=True)
 
 
