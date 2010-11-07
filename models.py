@@ -19,6 +19,7 @@ class Company(db.Model):
 
   @staticmethod
   def UrlName(name):
+    name = str(name)
     return name.lower().replace(' ','-').translate(None, '.,?!')
 
   def GetReviews(self, order=None):
@@ -38,6 +39,8 @@ class Company(db.Model):
       if review.rating:
         total += review.rating.overall or 0
         count += 1
+    if not count:
+      return 0
     return total / count
 
   def SetUrlName(self):
