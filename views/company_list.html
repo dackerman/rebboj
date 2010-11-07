@@ -26,7 +26,7 @@
    {% for c in companies%}
    <tr>
      <td>
-       <a href="{{ c.name }}">{{ c.name }}</a><br />
+       <a href="/companies/view/{{ c.name }}">{{ c.name }}</a><br />
      </td>
      <td>
        {{ c.GetRating }}

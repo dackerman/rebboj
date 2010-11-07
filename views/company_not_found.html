@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Company Not Found {% endblock %}
+
+{% block content %}
+  <div id="company_not_found">
+    {{ company }} was not found in Jobber because:
+
+    <ul>
+      <li>There was a terrible typo, in which case you can <a href="/companies/">search again here</a>. OR </li>
+      <li>The company is not yet in Jobber. Please feel free to <a href="/companies/add">add it here</a>.</li>
+    </ul>
+  </div>
+{% endblock %}

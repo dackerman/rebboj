@@ -4,20 +4,53 @@
 {% block title %}Add a Company{% endblock %}
 
 {% block content %}
-<form action="add_company" method="post">
+<form action="add" method="post">
   <table>
+   <tr>
+     <td class="required">
+       <label name="required">* = Required</label>
+     </td>
+   </tr>
     <tr>
       <td class="rightaligned">
         <label name="name">Company Name</label>
       </td>
-      <!-- <td> Text area will go here</td>-->
+      <td>
+        <input id="name" type="text" name="name" />
+      </td>
     </tr>
     <tr>
-      <td class"rightaligned">
+      <td class="rightaligned">
         <label name="industry">Industry</label>
       </td>
-      <!-- <td> Industry dropdown will go here </td> -->
+      <td>
+        <select name="industry">
+          <option value="software">Software</option>
+          <option value="hardware">Hardware</option>
+        </select>
+      </td>
     </tr>
-  <table>
+    <tr>
+      <td class="rightaligned">
+        <label name="location">Location</label>
+      </td>
+      <td>
+        <input id="location" type="text" name="location" />
+      </td>
+    </tr>
+    <tr>
+      <td class="rightaligned">
+        <label name="url">URL</label>
+      </td>
+      <td>
+        <input id="url" type="text" name="url" />
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <input id="submit" type="submit" value="Add Company" />
+      </td>
+    </tr>
+  </table>
 </form>
 {% endblock %}
