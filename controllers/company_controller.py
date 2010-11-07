@@ -46,7 +46,7 @@ class CompanyProfileController(webapp.RequestHandler):
 
 class CompanyAddController(webapp.RequestHandler):
     def get(self):
-        path = GetTemplate('add_company')
+        path = GetTemplate('company_add')
         self.response.out.write(template.render(path, {}))
 
 
