@@ -14,6 +14,8 @@ from google.appengine.ext import db
 class Company(db.Model):
   name = db.StringProperty()
   urlname = db.StringProperty()
+  industry = db.StringProperty()
+  url = db.StringProperty()
 
   @staticmethod
   def UrlName(name):

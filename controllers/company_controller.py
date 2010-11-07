@@ -22,7 +22,14 @@ def GetTemplate(view_name):
     return os.path.join(os.path.dirname(__file__),'../views/'+view_name+'.html')
 
 
-class CompanyProfileController(webapp.RequestHandler):
+class BaseController(webapp.RequestHandler):
+    def GetParam(self, name):
+        return self.request.get(name)
+
+    def Render(self, template_name, template_data):
+        self.response.out.write(template.render(template_name, template_data))
+
+class CompanyProfileController(BaseController):
     def get(self, company_name):
         path = GetTemplate('company_profile')
         url_name = Company.UrlName(company_name)
@@ -38,19 +45,28 @@ class CompanyProfileController(webapp.RequestHandler):
             'reviews': [(r.text, r.rating.WeightedAverage())
                         for r in company.GetReviews(order='-date') if r.rating]
             }
-        self.response.out.write(template.render(path, template_data))
+        self.Render(path, template_data)
 
     def CompanyNotFound(self, company_name):
-        path = GetTemplate('company_not_found')
-        self.response.out.write(template.render(path, {'company': company_name}))
+        self.Render(GetTemplate('company_not_found'),
+                    {'company': company_name})
 
-class CompanyAddController(webapp.RequestHandler):
+
+class CompanyAddController(BaseController):
     def get(self):
         path = GetTemplate('company_add')
         self.response.out.write(template.render(path, {}))
 
+    def post(self):
+        company = Company()
+        company.name = self.GetParam('name')
+        company.industry = self.GetParam('industry')
+        company.url = self.GetParam('url')
+        company.put()
+        self.redirect('/companies/view/' + company.urlname)
 
-class CompaniesController(webapp.RequestHandler):
+
+class CompaniesController(BaseController):
     def get(self):
         path = GetTemplate('company_list')
         companies = Company.all().order('name')
