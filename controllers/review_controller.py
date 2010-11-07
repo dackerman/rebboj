@@ -22,23 +22,21 @@ from models import Rating
 
 
 class ReviewController(webapp.RequestHandler):
-    def get(self, company_name):
+    def get(self, url_name):
+        company = Company.all().filter('urlname = ', url_name).fetch(1)
+        company = company[0]
 	reviews = db.GqlQuery("SELECT * FROM Review ORDER BY date DESC")
 	template_values = {
 		'reviews': reviews,
-                'company_name': company_name
+                'company_name': company.name
 	}
 
 	path = os.path.join(os.path.dirname(__file__), '../views/review.html')
 	self.response.out.write(template.render(path, template_values))
 
-    def post(self, company_name):
-        company = Company.all().filter('name = ', company_name).fetch(1)
-        if not len(company):
-            company = Company(name=company_name)
-            company.put()
-        else:
-            company = company[0]
+    def post(self, url_name):
+        company = Company.all().filter('urlname = ', url_name).fetch(1)
+        company = company[0]
 
 	review = Review()
         review.company = company
@@ -54,7 +52,7 @@ class ReviewController(webapp.RequestHandler):
         rating.put()
         review.rating = rating
 	review.put()
-	self.redirect('/companies/' + company.urlname)
+	self.redirect('/companies/view/' + company.urlname)
 
     def GetIntOrDefault(self, param):
         value = self.request.get(param)
@@ -62,7 +60,7 @@ class ReviewController(webapp.RequestHandler):
             return int(value)
         return Rating.GetDefaultRating()
 
-application = webapp.WSGIApplication( [('/companies/(.*)/review',
+application = webapp.WSGIApplication( [('/companies/view/(.*)/review',
                                         ReviewController)], debug=True)
 
 
