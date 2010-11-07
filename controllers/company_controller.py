@@ -40,7 +40,7 @@ class CompanyProfileController(BaseController):
             self.CompanyNotFound(company_name)
             return
         template_data = {
-            'name': company_name,
+            'name': company.name,
             'stars': company.GetRating(),
             'reviews': [(r.text, r.rating.WeightedAverage())
                         for r in company.GetReviews(order='-date') if r.rating]
@@ -55,7 +55,7 @@ class CompanyProfileController(BaseController):
 class CompanyAddController(BaseController):
     def get(self):
         path = GetTemplate('company_add')
-        self.response.out.write(template.render(path, {}))
+        self.Render(path, {})
 
     def post(self):
         company = Company()
@@ -73,7 +73,7 @@ class CompaniesController(BaseController):
         template_data = {
             'companies': companies
             }
-        self.response.out.write(template.render(path, template_data))
+        self.Render(path, template_data)
 
 application = webapp.WSGIApplication([
         ('/companies/?', CompaniesController),

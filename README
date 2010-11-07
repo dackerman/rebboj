@@ -1,0 +1,14 @@
+Jobber
+
+How to setup and run tests:
+
+On Linux:
+1. Get and extract appengine wherever you'd like
+2. sudo apt-get install python-setuptools python-dev build-essential
+3. sudo easy_install nose
+4. sudo easy_install nosegae
+5. echo "nosetests --with-gae --without-sandbox --gae-lib-root=<path_to_appengine> unittests.py" >> run_unit_tests.sh
+6. chmod +x run_unit_tests.sh
+
+Now run it!
+./run_unit_tests.sh
