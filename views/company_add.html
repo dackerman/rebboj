@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block pagetitle %}Add a Company{% endblock %}
+{% block title %}Add a Company{% endblock %}
+
+{% block content %}
+<form action="add_company" method="post">
+  <table>
+    <tr>
+      <td class="rightaligned">
+        <label name="name">Company Name</label>
+      </td>
+      <!-- <td> Text area will go here</td>-->
+    </tr>
+    <tr>
+      <td class"rightaligned">
+        <label name="industry">Industry</label>
+      </td>
+      <!-- <td> Industry dropdown will go here </td> -->
+    </tr>
+  <table>
+</form>
+{% endblock %}
