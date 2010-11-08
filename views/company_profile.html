@@ -8,11 +8,11 @@
 
 {% block content %}
  <div id="company">
- 	<div class="title">{{ name }}</div>
+ 	<div class="title">{{ company.name }}</div>
  	<div id="stars">
-         {{ stars  }}
+         {{ company.rating }}
  	</div>
- 	<div id="reviews"><a href="">43 reviews</a></div>
+ 	<div id="reviews"><a href="./reviews">All {{ reviews|length }} Reviews</a></div>
  </div>
  <div id="viewby">
  	View by:<br />
@@ -32,7 +32,7 @@
    {% for r  in reviews %}
    An anonymous person wrote:
    {{ r.1 }} <br />
-   <blockquote>{{ r.0|escape }}</blockquote>
+   <blockquote>{{ r.0|escape|linebreaks }}</blockquote>
    {% endfor %}
  </div>
 {% endblock %}

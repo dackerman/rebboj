@@ -51,6 +51,8 @@ class Company(db.Model):
     self.SetUrlName()
     return super(Company, self).put()
 
+  rating = property(GetRating)
+
 
 class Rating(db.Model):
     overall = db.IntegerProperty()
