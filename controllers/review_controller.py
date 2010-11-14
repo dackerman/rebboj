@@ -20,6 +20,8 @@ from models import Review
 from models import Company
 from models import Rating
 
+def GetTemplate(view_name):
+    return os.path.join(os.path.dirname(__file__),'../views/'+view_name+'.html')
 
 class ReviewController(webapp.RequestHandler):
     def get(self, url_name):
@@ -31,7 +33,7 @@ class ReviewController(webapp.RequestHandler):
                 'company_name': company.name
 	}
 
-	path = os.path.join(os.path.dirname(__file__), '../views/review.html')
+	path = GetTemplate('review')
 	self.response.out.write(template.render(path, template_values))
 
     def post(self, url_name):

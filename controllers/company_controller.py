@@ -17,19 +17,6 @@ from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
 from models import Company
 
-
-def GetTemplate(view_name):
-    return os.path.join(os.path.dirname(__file__),'../views/'+view_name+'.html')
-
-
-class BaseController(webapp.RequestHandler):
-    def GetParam(self, name):
-        return self.request.get(name)
-
-    def Render(self, template_name, template_data):
-        self.response.out.write(template.render(template_name, template_data))
-
-
 class CompanyProfileController(BaseController):
     def get(self, company_name):
         url_name = Company.UrlName(company_name)
