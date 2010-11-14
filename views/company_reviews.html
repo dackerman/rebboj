@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block pagetitle %}Company Reviews{% endblock %}
+{% block title %}Company Reviws{% endblock %}
+
+{% block content %}
+<div id="company">
+  Reviews for {{ company_name }}
+</div>
+
+<div id="search">
+  <input type="search" placeholder="Search Again">
+</div>
+
+<div id="sortby">
+  <a href="">Highest Ratings</a>
+  <a href="">Lowest Ratings</a>
+  <a href="">Trusted Ratings</a>
+  <a href="">Controversial Ratings</a>
+</div>
+
+<div id="reviews">
+  {% for r in reviews %}
+  An anonymous person wrote:<br />
+  {{ r.text }} <br />
+  {% endfor %}
+</div>
+{% endblock %}
