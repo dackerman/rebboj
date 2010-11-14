@@ -10,8 +10,7 @@
  <div id="company">
  	<span class="title">{{ company.name }}</span>
         <span class="stars">{{ company.rating }}</span>
-        <span class="stars">2.7</span>
- 	<div id="reviews"><a href="./reviews">All {{ reviews|length }} Reviews</a></div>
+ 	<div id="reviews"><a href="./{{ company.urlname }}/reviews">All {{ reviews|length }} Reviews</a></div>
  </div>
  <div id="viewby">
  	View by:<br />
