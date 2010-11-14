@@ -13,10 +13,19 @@ gStarId = 0;
 
 var Stars = function() { };
 
-Stars.createStars = function(id, number, tiny){
+Stars.createAllStars = function(matcher){
+  $(matcher).each(
+    function(index, element){
+      Stars.createStars(element, true);
+    });
+};
+
+Stars.createStars = function(ele, tiny){
+  var container = $(ele);
+  var number = new Number(container.text());
+  container.empty();
   var suffix = (tiny ? "tiny.png" : "big.png");
   // Generate HTML for whole stars.
-  var container = $("#"+id);
   var wholeStars = Math.floor(number);
   for(var i=0;i<wholeStars;i++){
     Stars.createStar(container, fullStar + suffix);
@@ -30,7 +39,7 @@ Stars.createStars = function(id, number, tiny){
   var partialStar = Math.round((number - wholeStars) * 4);
   var partialImage = partialStars[partialStar] + suffix;
   Stars.createStar(container, partialImage);
-
+  
   // Generate Empty stars up to 5.
   for(var i=0;i<4 - wholeStars;i++){
     Stars.createStar(container, emptyStar + suffix);

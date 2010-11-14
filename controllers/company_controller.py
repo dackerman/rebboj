@@ -69,8 +69,10 @@ class CompaniesController(BaseController):
     def get(self):
         path = GetTemplate('company_list')
         companies = Company.all().order('name')
+        autocomplete_list = ','.join(['"%s"' % c.name for c in companies])
         template_data = {
-            'companies': companies
+            'companies': companies,
+            'autocomplete_list': autocomplete_list
             }
         self.Render(path, template_data)
 

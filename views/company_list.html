@@ -7,16 +7,9 @@
   <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/autocomplete/jquery.autocomplete.js"></script>
   <script type="text/javascript">
   $(document).ready(function(){
-    var data = [
-      {% for c in companies %}
-      "{{ c.name }}",
-      {% endfor %}
-    ];
-  $("#search_company").autocomplete(data);
-  {% for c in companies %}
-    Stars.createStars('star', {{ c.GetRating }}, true);
-  {% endfor %}
- });
+    var data = [{{ autocomplete_list }}];
+    $("#search_company").autocomplete(data);
+  });
   </script>
 {% endblock %}
 
@@ -32,7 +25,7 @@
        <a href="/companies/view/{{ c.urlname }}">{{ c.name }}</a><br />
      </td>
      <td>
-       <div id="star"></div>
+       <span class="stars">{{ c.GetRating }}</span>
      </td>
    </tr>
    {% endfor %}
