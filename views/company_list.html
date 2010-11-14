@@ -13,7 +13,10 @@
       {% endfor %}
     ];
   $("#search_company").autocomplete(data);
-  });
+  {% for c in companies %}
+    Stars.createStars('star', {{ c.GetRating }}, true);
+  {% endfor %}
+ });
   </script>
 {% endblock %}
 
@@ -29,7 +32,7 @@
        <a href="/companies/view/{{ c.urlname }}">{{ c.name }}</a><br />
      </td>
      <td>
-       {{ c.GetRating }}
+       <div id="star"></div>
      </td>
    </tr>
    {% endfor %}
