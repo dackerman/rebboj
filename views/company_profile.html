@@ -6,19 +6,11 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/company.css" />
 {% endblock %}
 
-{% block javascript %}
-<script type="text/javascript" src="/javascript/stars.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-  Stars.createStars('stars', {{ company.rating }}, true);
-});
-</script>
-{% endblock %}
-
-
 {% block content %}
  <div id="company">
- 	<span class="title">{{ company.name }}</span> <span id="stars"></span>
+ 	<span class="title">{{ company.name }}</span>
+        <span class="stars">{{ company.rating }}</span>
+        <span class="stars">2.7</span>
  	<div id="reviews"><a href="./reviews">All {{ reviews|length }} Reviews</a></div>
  </div>
  <div id="viewby">
