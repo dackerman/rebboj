@@ -7,15 +7,13 @@ Created by David Ackerman & Sweta Vajjhala on 2010-10-17.
 Compyright (c) 2010 __MyCompanyName__. all rights reserved.
 """
 
-import os
-import cgi
-
-from google.appengine.ext import db
-from google.appengine.api import users
 from google.appengine.ext import webapp
-from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
+
 from models import Company
+from controllers.base_controller import BaseController
+from controllers.base_controller import GetTemplate
+
 
 class CompanyProfileController(BaseController):
     def get(self, company_name):

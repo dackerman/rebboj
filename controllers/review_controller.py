@@ -7,23 +7,18 @@ Created by David Ackerman & Sweta Vajjhala on 2010-10-23.
 Copyright (c) 2010 __MyCompanyName__. All rights reserved.
 """
 
-import os
-import cgi
-
 from google.appengine.ext import db
-from google.appengine.api import users
 from google.appengine.ext import webapp
-from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
 
 from models import Review
 from models import Company
 from models import Rating
+from controllers.base_controller import BaseController
+from controllers.base_controller import GetTemplate
 
-def GetTemplate(view_name):
-    return os.path.join(os.path.dirname(__file__),'../views/'+view_name+'.html')
 
-class ReviewController(webapp.RequestHandler):
+class AddReviewController(BaseController):
     def get(self, url_name):
         company = Company.all().filter('urlname = ', url_name).fetch(1)
         company = company[0]
@@ -32,9 +27,7 @@ class ReviewController(webapp.RequestHandler):
 		'reviews': reviews,
                 'company_name': company.name
 	}
-
-	path = GetTemplate('review')
-	self.response.out.write(template.render(path, template_values))
+        self.Render(GetTemplate('review'), template_values)
 
     def post(self, url_name):
         company = Company.all().filter('urlname = ', url_name).fetch(1)
@@ -62,8 +55,23 @@ class ReviewController(webapp.RequestHandler):
             return int(value)
         return Rating.GetDefaultRating()
 
-application = webapp.WSGIApplication( [('/companies/view/(.*)/review',
-                                        ReviewController)], debug=True)
+
+class ListReviewsController(BaseController):
+    def get(self, url_name):
+        company = Company.all().filter('urlname = ', url_name).fetch(1)
+        company = company[0]
+        reviews = company.GetReviews();
+	template_values = {
+		'reviews': reviews,
+                'company_name': company.name
+	}
+        self.Render(GetTemplate('company_reviews'), template_values)
+
+
+application = webapp.WSGIApplication(
+    [('/companies/view/(.*)/reviews/add', AddReviewController),
+     ('/companies/view/(.*)/reviews/?', ListReviewsController)],
+    debug=True)
 
 
 def main():

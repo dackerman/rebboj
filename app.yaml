@@ -16,7 +16,7 @@ handlers:
 - url: /
   script: controllers/index_controller.py
 
-- url: /companies.*/review
+- url: /companies.*/reviews.*
   script: controllers/review_controller.py
 
 - url: /companies.*

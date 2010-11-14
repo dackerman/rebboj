@@ -5,7 +5,7 @@
 
 {% block content %}
 <div id="company">
-  Reviews for {{ company.name }}
+  Reviews for {{ company_name }}
 </div>
 
 <div id="search">
@@ -20,6 +20,9 @@
 </div>
 
 <div id="reviews">
-  Review_template.html insert goes here for each review
+  {% for r in reviews %}
+  An anonymous person wrote:<br />
+  {{ r.text }} <br />
+  {% endfor %}
 </div>
 {% endblock %}
