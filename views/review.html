@@ -7,13 +7,13 @@
 <script type="text/javascript" src="/javascript/stars.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-  Stars.createStars("#overall");
-  Stars.createStars("#benefits");
-  Stars.createStars("#salary");
-  Stars.createStars("#environment");
-  Stars.createStars("#peers");
-  Stars.createStars("#location");
-  Stars.createStars("#growth");
+  Stars.createInteractiveStars("#overall");
+  Stars.createInteractiveStars("#benefits");
+  Stars.createInteractiveStars("#salary");
+  Stars.createInteractiveStars("#environment");
+  Stars.createInteractiveStars("#peers");
+  Stars.createInteractiveStars("#location");
+  Stars.createInteractiveStars("#growth");
 
   $("input[type=hidden]").attr("value", 3);
   $("[name=star_3]").click();

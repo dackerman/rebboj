@@ -1,6 +1,9 @@
 #company .title {
     font-size:160%;
 }
+#stars {
+    margin-left:10px;
+}
 #company, #trend_graph {
     float: left;
 }
